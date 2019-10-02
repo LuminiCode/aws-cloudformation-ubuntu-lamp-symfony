@@ -84,9 +84,19 @@ Resources:
           # install git
           sudo apt-get install git
 
+          # set apache2 directory for symfony
+          sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/000-default.conf -o /etc/apache2/sites-enabled/000-default.conf
+
+          # configure php.ini
+          sudo sed -i 's/memory_limit = .*/memory_limit = '512M'/' /etc/php/7.2/apache2/php.ini
+          
           # insert example file
           cd /var/www/html
           echo "<h1> Hello World </h1>" > index.html
+
+          # restart apache
+          sudo /etc/init.d/apache2 restart
+
   WebServerSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
