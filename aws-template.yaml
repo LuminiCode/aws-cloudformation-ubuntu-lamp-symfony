@@ -12,6 +12,38 @@ Parameters:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
     Type: 'AWS::EC2::KeyPair::KeyName'
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  DBName:
+    Default: MyDatabase
+    Description: MySQL database name
+    Type: String
+    MinLength: '1'
+    MaxLength: '64'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  DBUser:
+    NoEcho: 'true'
+    Description: Username for MySQL database access
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  DBPassword:
+    NoEcho: 'true'
+    Description: Password for MySQL database access
+    Type: String
+    MinLength: '1'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  DBRootPassword:
+    NoEcho: 'true'
+    Description: Root password for MySQL
+    Type: String
+    MinLength: '1'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
   SSHLocation:
     Description: ' The IP address range that can be used to SSH to the EC2 instances'
     Type: String
@@ -33,7 +65,8 @@ Resources:
           Value: Ubuntu16 Web + SSH Server
       KeyName: !Ref KeyName
       UserData:
-        'Fn::Base64': |
+        'Fn::Base64':
+          !Sub |
           #!/bin/bash
           set -e
           set -x
@@ -87,12 +120,17 @@ Resources:
           # set apache2 directory for symfony
           sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/000-default.conf -o /etc/apache2/sites-enabled/000-default.conf
 
+          # set mysql
+          sudo mysql -e "CREATE DATABASE ${DBName} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+          sudo mysql -e "CREATE USER ${DBUser}@localhost IDENTIFIED BY '${DBPassword}';"
+          sudo mysql -e "GRANT ALL PRIVILEGES ON ${DBName}.* TO '${DBUser}'@'localhost';"
+          sudo mysql -e "FLUSH PRIVILEGES;"
+
+          # install phpmyadmin
+          #sudo apt-get install -y phpmyadmin
+
           # configure php.ini
           sudo sed -i 's/memory_limit = .*/memory_limit = '512M'/' /etc/php/7.2/apache2/php.ini
-          
-          # insert example file
-          cd /var/www/html
-          echo "<h1> Hello World </h1>" > index.html
 
           # restart apache
           sudo /etc/init.d/apache2 restart
