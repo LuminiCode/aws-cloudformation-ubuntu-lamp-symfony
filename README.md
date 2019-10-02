@@ -7,6 +7,4 @@ This is LAMP Stack
 - Ubuntu 18
 - Apache 2
 - MySQL 5.6
-- PHP 7.7
-
-
+- PHP 7.2
