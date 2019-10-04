@@ -82,7 +82,7 @@ Parameters:
       - false
     ConstraintDescription: must be either true or false.
   GithubUser:
-    Description: User for GitHub access
+    Description: User for GitHub access (only if you want to install an existing Project)
     Type: String
     MinLength: '1'
     MaxLength: '41'
@@ -90,7 +90,7 @@ Parameters:
     ConstraintDescription: must contain only alphanumeric characters.
   GithubPassword:
     NoEcho: 'true'
-    Description: Password for GitHub access
+    Description: Password for GitHub access (only if you want to install an existing Project)
     Type: String
     MinLength: '1'
     MaxLength: '41'
