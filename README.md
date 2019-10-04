@@ -16,9 +16,8 @@ This is LAMP Stack
 ------------
 
 ##### Notes:
-You Can Create A New Symfony Project Or You Can Take An Existing Symfony-Project From Github.
-
-For The Case You Want To Install An Existing Project You Have To Write Your Own Script!
+You can create a new symfony project or you can take an existing Symfony-Project from Github.
+For the case you want to install an existing project you have to write your own script!
 
 ```yaml
 # install an existing project from github
