@@ -1,0 +1,5 @@
+#Inhalt der Datei /etc/apache2/conf-available/phpmyadmin.conf
+Alias /phpmyadmin /var/www/phpmyadmin/ 
+<Directory /var/www/phpmyadmin/> 
+   AllowOverride all 
+</Directory>
