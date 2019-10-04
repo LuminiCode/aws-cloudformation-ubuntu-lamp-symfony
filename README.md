@@ -9,6 +9,9 @@ This is LAMP Stack
 - MySQL 5.6
 - PHP 7.2.19
 
+## Tools
+- PhpMyAdmin
+
 ## AWS Ressourcen
 - EC2-Instance (t2.micro located in Frankfurt)
 
