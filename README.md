@@ -15,6 +15,8 @@ This is LAMP Stack
 ## AWS Ressourcen
 - EC2-Instance (t2.micro located in Frankfurt)
 
+## Another Ressources
+- GitHub
 
 ------------
 
