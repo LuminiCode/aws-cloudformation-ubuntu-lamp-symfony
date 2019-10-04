@@ -8,3 +8,18 @@ This is LAMP Stack
 - Apache 2
 - MySQL 5.6
 - PHP 7.2.19
+
+## AWS Ressourcen
+- EC2-Instance (t2.micro located in Frankfurt)
+
+You can create a new Symfony project or you can take an existing symfony-project from github.
+
+For the case you want to install an existing project you have to write your own script!
+
+```yaml
+# install an existing project from github
+# !! edit !! the following script (the following script is on github)
+mkdir /var/www/html/settings
+sudo curl https://${GithubUser}:${GithubPassword}@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
+bash /var/www/html/settings/aws-install-script-sg.sh ${GithubUser} ${GithubPassword} ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName}
+```
