@@ -6,7 +6,7 @@ This is LAMP Stack
 
 - Ubuntu 18.04.2
 - Apache 2
-- MySQL 5.6
+- MySQL 5.7
 - PHP 7.2.19
 
 ## Tools
