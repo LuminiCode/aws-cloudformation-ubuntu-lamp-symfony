@@ -1,3 +1,6 @@
+# Clone GitHub Respository
+# ComandLine Arguments: $1 (GitHubUser) | $2 (GitHubPassword) | $3 (StackName) | $4 (DBUser) | $5 (DB Password) | $6 (DB Name) | $7 (DB Root Password) | $8 (Symfony installation)
+
 set -e
 set -x
 # Set timezone
@@ -50,16 +53,16 @@ sudo apt-get install git
 
 # set apache2 directory for symfony
 a='DocumentRoot /var/www/html'
-b='DocumentRoot /var/www/html/'"${AWS::StackName}"''/public
+b='DocumentRoot /var/www/html/'"$3"''/public
 sudo sed -i 's,'"$a"','"$b"',' /etc/apache2/sites-available/000-default.conf
 
 # set mysql
-sudo mysql -e "CREATE DATABASE ${DBName} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
-sudo mysql -e "CREATE USER ${DBUser}@localhost IDENTIFIED BY '${DBPassword}';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON ${DBName}.* TO '${DBUser}'@'localhost';"
+sudo mysql -e "CREATE DATABASE $6 /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+sudo mysql -e "CREATE USER $4@localhost IDENTIFIED BY '$5';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON $6.* TO '$4'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
-sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${DBRootPassword}';"
+sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$7';"
 
 # install phpmyadmin
 # Download & unzip the last phpMyAdmin-version
@@ -103,24 +106,24 @@ sudo sed -i 's/memory_limit = .*/memory_limit = '512M'/' /etc/php/7.2/apache2/ph
 # restart apache
 sudo /etc/init.d/apache2 restart
 
-if [ "${NewSymfonyInstallation}" == "true" ]
+if [ "$8" == "true" ]
 then
       # install new symfonfy project
       cd /var/www/html
       export COMPOSER_HOME="$HOME/.config/composer";
-      composer create-project symfony/website-skeleton ${AWS::StackName}
+      composer create-project symfony/website-skeleton $3
       composer clear
 
       # change database-settings in the symfony .env file
       x='DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name'
-      y='DATABASE_URL=mysql://'"${DBUser}"':'"${DBPassword}"'@localhost/'"${DBName}"''
-      sed -i 's,'"$x"','"$y"',' /var/www/html/${AWS::StackName}/.env
+      y='DATABASE_URL=mysql://'"$4"':'"$5"'@localhost/'"$6"''
+      sed -i 's,'"$x"','"$y"',' /var/www/html/$3/.env
 else
       # install an existing project from github
       # !! edit !! the following script (the following script is on github)
       mkdir /var/www/html/settings
-      sudo curl https://${GithubUser}:${GithubPassword}@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
-          bash /var/www/html/settings/aws-install-script-sg.sh ${GithubUser} ${GithubPassword} ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName}
+      sudo curl https://$1:$2@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
+          bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 $5 $6
 fi
 
 # set ubuntu as the owner of document root
