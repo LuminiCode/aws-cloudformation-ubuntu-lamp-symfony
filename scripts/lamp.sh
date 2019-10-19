@@ -125,7 +125,8 @@ else
       # !! edit !! the following script (the following script is on github)
       mkdir /var/www/html/settings
       sudo curl https://$7:$8@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
-          bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 $7 $8
+      bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 $7 $8
+      sudo rm -r /var/www/html/settings
 fi
 
 # set ubuntu as the owner of document root
