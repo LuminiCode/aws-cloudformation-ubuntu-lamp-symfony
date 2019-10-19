@@ -40,6 +40,9 @@ sudo apt-get install php7.2-mbstring
 # install python3
 sudo apt install python3
 
+# enable mod_rewrite
+sudo a2enmod rewrite
+
 # install zip & unzip
 sudo apt-get install -y zip
 sudo apt-get install -y unzip
