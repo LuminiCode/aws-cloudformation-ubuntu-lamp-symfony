@@ -54,9 +54,10 @@ sudo mv composer.phar /usr/local/bin/composer
 sudo apt-get install git
 
 # set apache2 directory for symfony
-a='DocumentRoot /var/www/html'
-b='DocumentRoot /var/www/html/'"$1"''/public
-sudo sed -i 's,'"$a"','"$b"',' /etc/apache2/sites-available/000-default.conf
+sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
+a1='/var/www/html'
+b1='/var/www/html/'"$1"''/public
+sudo sed -i 's,'"$a1"','"$b1"',' /etc/apache2/sites-available/000-default.conf
 
 # set mysql
 sudo mysql -e "CREATE DATABASE $4 /*\!40100 DEFAULT CHARACTER SET utf8 */;"
