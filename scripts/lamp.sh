@@ -131,3 +131,6 @@ fi
 # set ubuntu as the owner of document root
 sudo chown ubuntu:ubuntu /var/www/html/ -R
 
+# delete temporary files and folders
+sudo rm -r /phpMyAdmin-4.9.1-all-languages
+sudo rm -r /phpMyAdmin-latest-all-languages.zip
