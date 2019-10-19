@@ -1,5 +1,7 @@
 # Clone GitHub Respository
-# ComandLine Arguments: $1 (GitHubUser) | $2 (GitHubPassword) | $3 (StackName) | $4 (DBUser) | $5 (DB Password) | $6 (DB Name) | $7 (DB Root Password) | $8 (Symfony installation)
+# ComandLine Arguments: 
+# $1 (GitHubUser) | $2 (GitHubPassword) | $3 (StackName) | $4 (DBUser) | $5 (DB Password) | $6 (DB Name)
+# $7 (DB Root Password) | $8 (Symfony installation)
 
 set -e
 set -x
