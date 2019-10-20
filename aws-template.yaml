@@ -1,0 +1,170 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  AWS CloudFormation Sample Template LAMP_Single_Instance: Create a LAMP stack
+  using a single EC2 instance and a local MySQL database for storage
+  **WARNING** This template creates an Amazon EC2 instance.
+  You will be billed for the AWS resources used if you create a stack from this template.
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Database settings"
+        Parameters:
+          - DBName
+          - DBUser
+          - DBPassword
+          - DBRootPassword
+      - Label:
+          default: "Settings"
+        Parameters:
+          - SymfonyInstallation
+          - PhpMyAdminInstallation
+          - JenkinsInstallation
+      - Label:
+          default: "Symfony settings"
+        Parameters:
+          - NewSymfonyInstallation
+          - GithubUser
+          - GithubPassword
+    ParameterLabels:
+      VPCID:
+        default: "Cool new project is coming soon!"
+
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: must be the name of an existing EC2 KeyPair.
+  DBName:
+    Default: MyDatabase
+    Description: MySQL database name
+    Type: String
+    MinLength: '1'
+    MaxLength: '64'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  DBUser:
+    Description: Username for MySQL database access
+    Type: String
+    MinLength: '1'
+    MaxLength: '16'
+    AllowedPattern: '[a-zA-Z][a-zA-Z0-9]*'
+    ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
+  DBPassword:
+    NoEcho: 'true'
+    Description: Password for MySQL database access
+    Type: String
+    MinLength: '1'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  DBRootPassword:
+    NoEcho: 'true'
+    Description: Root password for MySQL
+    Type: String
+    MinLength: '1'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  SSHLocation:
+    Description: ' The IP address range that can be used to SSH to the EC2 instances'
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  SymfonyInstallation:
+    Default: true
+    Description : 'Do you want to install a symfony project?'
+    Type: String
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must be either true or false.
+  PhpMyAdminInstallation:
+    Default: true
+    Description : 'Do you want to install phpMyAdmin?'
+    Type: String
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must be either true or false'
+  JenkinsInstallation:
+    Default: false
+    Description : 'Do you want to install jenkins?'
+    Type: String
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must be either true or false.
+  NewSymfonyInstallation:
+    Default: false
+    Description : 'Do you want to take an existing project from github otherwise a new symfony project will be creat.'
+    Type: String
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must be either true or false.
+  GithubUser:
+    Description: User for GitHub access (only if you want to install an existing Project)
+    Type: String
+    MinLength: '0'
+    MaxLength: '41'
+    AllowedPattern: '[a-zA-Z0-9]*'
+    ConstraintDescription: must contain only alphanumeric characters.
+  GithubPassword:
+    NoEcho: 'true'
+    Description: Password for GitHub access (only if you want to install an existing Project)
+    Type: String
+    MinLength: '0'
+    MaxLength: '41'
+    ConstraintDescription: must contain only alphanumeric characters.
+Resources:
+  WebServerInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-0ac05733838eabc06
+      InstanceType: t2.micro
+      SecurityGroups:
+        - !Ref WebServerSecurityGroup
+      Tags:
+        - Key: Name
+          Value: Ubuntu16 Web + SSH Server
+      KeyName: !Ref KeyName
+      UserData:
+        'Fn::Base64':
+          !Sub |
+          #!/bin/bash
+          sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp.sh -o /lamp.sh
+          # GitHub data have to be at the end
+          bash /lamp.sh ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubPassword}
+          rm -r /lamp.sh
+
+  WebServerSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable HTTP access via port 80 and 8080 for example for jenkins
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '8080'
+          ToPort: '8080'
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref SSHLocation
+Outputs:
+  WebsiteURL:
+    Description: URL for newly created LAMP stack
+    Value: !Join
+      - ''
+      - - 'http://'
+        - !GetAtt
+          - WebServerInstance
+          - PublicDnsName
