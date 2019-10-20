@@ -112,7 +112,7 @@ sudo sed -i 's/memory_limit = .*/memory_limit = '512M'/' /etc/php/7.2/apache2/ph
 # restart apache
 sudo /etc/init.d/apache2 restart
 
-if [ "$6" == "true" ]
+if [ "$6" == "false" ]
 then
       # install new symfonfy project
       cd /var/www/html
