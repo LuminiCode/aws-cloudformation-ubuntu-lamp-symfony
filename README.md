@@ -9,9 +9,11 @@ This is LAMP Stack
 - MySQL 5.7
 - PHP 7.2.19
 
-## Tools
+## Optionally Tools
 - PhpMyAdmin
 - Python3
+- Symfony
+- Jenkins
 
 ## AWS Ressourcen
 - EC2-Instance (t2.micro located in Frankfurt)
