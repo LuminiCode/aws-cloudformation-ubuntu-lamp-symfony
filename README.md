@@ -23,6 +23,10 @@ This is LAMP Stack
 
 ------------
 
+#### Description:
+- Start phpMyAdmin: domain.com/phpmyadmin
+- Start jenkins: domain.com:8080
+
 ##### Notes:
 You can create a new symfony project or you can take an existing Symfony-Project from Github.
 For the case you want to install an existing project you have to write your own script!
