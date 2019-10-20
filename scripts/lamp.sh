@@ -107,7 +107,7 @@ sudo sed -i "s|$j|$k|g" /var/www/phpmyadmin/config.inc.php
 sudo systemctl reload apache2
 
 # configure php.ini
-sudo sed -i 's/memory_limit = .*/memory_limit = '512M'/' /etc/php/7.2/apache2/php.ini
+sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/7.2/apache2/php.ini
 
 # restart apache
 sudo /etc/init.d/apache2 restart
