@@ -23,11 +23,11 @@ This is LAMP Stack
 
 ------------
 
-#### Description:
-- Start phpMyAdmin: domain.com/phpmyadmin
-- Start jenkins: domain.com:8080
+## Description:
+#### Symfony:
+- Path: *domain.com*
 
-##### Notes:
+**Notes:**
 You can create a new symfony project or you can take an existing Symfony-Project from Github.
 For the case you want to install an existing project you have to write your own script!
 
@@ -37,4 +37,13 @@ For the case you want to install an existing project you have to write your own 
 mkdir /var/www/html/settings
 sudo curl https://${GithubUser}:${GithubPassword}@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
 bash /var/www/html/settings/aws-install-script-sg.sh ${GithubUser} ${GithubPassword} ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName}
+```
+#### phpMyAdmin: 
+- Path: *domain.com/phpmyadmin*
+
+#### Jenkins: 
+- Path: *domain.com:8080*
+- Unlock: In the terminal window, use the cat command to display the password
+```shell
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
