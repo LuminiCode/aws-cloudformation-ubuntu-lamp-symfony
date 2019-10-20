@@ -15,7 +15,7 @@ Metadata:
           - DBUser
           - DBPassword
           - DBRootPassword
-        - Label:
+      - Label:
           default: "Settings"
         Parameters:
           - SymfonyInstallation
