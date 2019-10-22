@@ -137,13 +137,10 @@ Resources:
         'Fn::Base64':
           !Sub |
           #!/bin/bash
-          sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp.sh -o /lamp.sh
           sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp -o /lamp
           # GitHub data have to be at the end
-          # bash /lamp.sh ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubPassword}
           sudo chmod +x /lamp
           /./lamp ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubPassword}
-          rm -r /lamp.sh
           rm -r /lamp
 
   WebServerSecurityGroup:
