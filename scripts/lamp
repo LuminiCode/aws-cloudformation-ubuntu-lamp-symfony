@@ -6,7 +6,7 @@
 v10 = "${10}"
 v11 = "${11}"
 
-mkdir v11
+mkdir $v11
 mkdir "${10}"
 
 set -e
@@ -140,8 +140,8 @@ then
      # install an existing project from github
     # !! edit !! the following script (the following script is on github)
     mkdir /var/www/html/settings
-    sudo curl https://$v10:$v11@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
-    bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 $v10 $v11
+    sudo curl https://${10}:${11}@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
+    bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 ${10} ${11}
     sudo rm -r /var/www/html/settings
   fi
 fi
