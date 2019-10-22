@@ -131,12 +131,13 @@ then
     y='DATABASE_URL=mysql://'"$2"':'"$3"'@localhost/'"$4"''
     sed -i 's,'"$x"','"$y"',' /var/www/html/$1/.env
   else
-     # install an existing project from github
+    # install an existing project from github
     # !! edit !! the following script (the following script is on github)
     mkdir /var/www/html/settings
-    sudo curl https://"${10}":"${10}"@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
+    sudo curl https://"${10}":"${11}"@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
+    echo 'https://"${10}":"${11}"@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh' > /test
     bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 "${10}" "${11}"
-    sudo rm -r /var/www/html/settings
+    # sudo rm -r /var/www/html/settings
   fi
 fi
 
