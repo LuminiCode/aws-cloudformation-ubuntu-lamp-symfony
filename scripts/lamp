@@ -162,6 +162,8 @@ fi
 
 # set ubuntu as the owner of document root
 sudo chown ubuntu:ubuntu /var/www/html/ -R
+# sudo chmod a+rwx /var/www/html -R
+
 
 if [ "$7" == "true" ]
 then
