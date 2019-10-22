@@ -138,9 +138,13 @@ Resources:
           !Sub |
           #!/bin/bash
           sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp.sh -o /lamp.sh
+          sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp -o /lamp
           # GitHub data have to be at the end
-          bash /lamp.sh ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubPassword}
+          # bash /lamp.sh ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubPassword}
+          chmod +x /lamp
+          ./lamp
           rm -r /lamp.sh
+          rm -r /lamp
 
   WebServerSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
