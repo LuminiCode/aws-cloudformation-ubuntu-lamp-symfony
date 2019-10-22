@@ -3,12 +3,6 @@
 # $6 (Symfony installation) | $7 (phpMyAdmin installation) | $8 (Jenkins installation)
 # $9 (Existing Symfony project) | $10 (GitHubUser) | $11 (GitHubPassword)
 
-v10 = "${10}"
-v11 = "${11}"
-
-mkdir "$v11"
-mkdir "${11"
-
 set -e
 set -x
 # Set timezone
@@ -141,7 +135,9 @@ then
     # !! edit !! the following script (the following script is on github)
     mkdir /var/www/html/settings
     sudo curl https://'${10}':'${11}'@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
-    mkdir /var/www/html/settings/'${10}'-'${11}'75757
+    mkdir /var/www/html/settings/'${10}'-'${11}'-757571
+    mkdir /var/www/html/settings/"${10}"-"${11}"-757572
+    mkdir /var/www/html/settings/${10}-${11}-757573
     bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 ${10} ${11}
     sudo rm -r /var/www/html/settings
   fi
