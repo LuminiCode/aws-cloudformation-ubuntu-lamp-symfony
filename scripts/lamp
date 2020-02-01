@@ -2,6 +2,7 @@
 # $1 (StackName) | $2 (DBUser) | $3 (DB Password) | $4 (DB Name) | $5 (DB Root Password)
 # $6 (Symfony installation) | $7 (phpMyAdmin installation) | $8 (Jenkins installation)
 # $9 (Existing Symfony project) | $10 (GitHubUser) | $11 (GitHubPassword)
+# $12 (GitHubPath)
 
 set -e
 set -x
@@ -143,7 +144,15 @@ then
     # install an existing project from github
     # !! edit !! the following script (the following script is on github)
     mkdir /var/www/html/settings
-    sudo curl https://"${10}":"${11}"@raw.githubusercontent.com/LuminiCode/symfony/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
+    
+    # get GitHubPath
+    s1="${12}"
+    s2=''
+    s3='https://github.com/'
+    s4=${s1/.git/$s2}
+    s4=${s4/$s3/$s2}
+    
+    sudo curl https://"${10}":"${11}"@raw.githubusercontent.com/"$s4"/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
     bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 "${10}" "${11}"
     sudo rm -r /var/www/html/settings
   fi
