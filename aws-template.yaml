@@ -27,6 +27,7 @@ Metadata:
           - NewSymfonyInstallation
           - GithubUser
           - GithubPassword
+          - GithubPath
     ParameterLabels:
       VPCID:
         default: "Cool new project is coming soon!"
