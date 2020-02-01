@@ -123,12 +123,10 @@ Parameters:
     MaxLength: '41'
     ConstraintDescription: must contain only alphanumeric characters.
   GithubPath:
-    NoEcho: 'true'
     Description: GitHubPath (only if you want to install an existing Project)
     Type: String
     MinLength: '0'
     MaxLength: '80'
-    ConstraintDescription: must contain only alphanumeric characters.
 Resources:
   WebServerInstance:
     Type: 'AWS::EC2::Instance'
