@@ -146,7 +146,7 @@ then
     mkdir /var/www/html/settings
     
     # get GitHubPath
-    s1=$12
+    s1=${12}
     s2=''
     s3='https://github.com/'
     s4=${s1/.git/$s2}
