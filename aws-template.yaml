@@ -26,7 +26,7 @@ Metadata:
         Parameters:
           - NewSymfonyInstallation
           - GithubUser
-          - GithubPassword
+          - GithubToken
           - GithubPath
     ParameterLabels:
       VPCID:
@@ -115,13 +115,11 @@ Parameters:
     MaxLength: '41'
     AllowedPattern: '[a-zA-Z0-9]*'
     ConstraintDescription: must contain only alphanumeric characters.
-  GithubPassword:
-    NoEcho: 'true'
-    Description: Password for GitHub access (only if you want to install an existing Project)
+  GithubToken:
+    Description: Token for GitHub access (only if you want to install an existing Project)
     Type: String
     MinLength: '0'
     MaxLength: '41'
-    ConstraintDescription: must contain only alphanumeric characters.
   GithubPath:
     Description: GitHubPath (only if you want to install an existing Project)
     Type: String
