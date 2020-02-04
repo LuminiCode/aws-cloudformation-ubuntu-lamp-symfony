@@ -144,7 +144,7 @@ Resources:
           sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp -o /lamp
           # GitHub data have to be at the end
           sudo chmod +x /lamp
-          /./lamp ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubPassword} ${GithubPath}
+          /./lamp ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath}
           rm -r /lamp
 
   WebServerSecurityGroup:
