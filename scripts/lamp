@@ -146,13 +146,13 @@ then
     mkdir /var/www/html/settings
     
     # get GitHubPath
-    s1='https://github.com/LuminiCode/sg_sterneck.git'
+    s1=$12
     s2=''
     s3='https://github.com/'
     s4=${s1/.git/$s2}
-    s4=${s4/$s3/$s2}
+    s4=${s4/$s3/$s2}    
+    sudo curl -u "${10}":"${11}" https://raw.githubusercontent.com/"${s4}"/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
     
-    sudo curl https://"${10}":"${11}"@raw.githubusercontent.com/"${s4}"/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
     bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 "${10}" "${11}"
     sudo rm -r /var/www/html/settings
   fi
