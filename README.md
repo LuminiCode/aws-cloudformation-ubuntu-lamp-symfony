@@ -1,6 +1,8 @@
 # AWS Cloudformation template for LAMP Stack Deployment
 This is a Cloudformation template to deploy LAMP Stack to AWS! This Template is adapted for the PHP-Framework Symfony.
 
+Tutorial in German: https://youtu.be/hcELHMOs32U
+
 ## Stack
 This is LAMP Stack
 
