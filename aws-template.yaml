@@ -129,13 +129,13 @@ Resources:
   WebServerInstance:
     Type: 'AWS::EC2::Instance'
     Properties:
-      ImageId: ami-0ac05733838eabc06
+      ImageId: ami-05c26ae4789875080
       InstanceType: t2.micro
       SecurityGroups:
         - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
-          Value: Ubuntu16 Web + SSH Server
+          Value: Ubuntu16 Web + SSH Server + ${AWS::StackName}
       KeyName: !Ref KeyName
       UserData:
         'Fn::Base64':
