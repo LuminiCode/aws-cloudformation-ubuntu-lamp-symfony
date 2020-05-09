@@ -135,7 +135,7 @@ Resources:
         - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
-          Value: Ubuntu16 Web + SSH Server + ${AWS::StackName}
+          Value: 'Ubuntu16 Web + SSH Server + ${AWS::StackName}'
       KeyName: !Ref KeyName
       UserData:
         'Fn::Base64':
