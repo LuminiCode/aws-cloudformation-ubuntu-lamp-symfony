@@ -4,10 +4,10 @@ This is a Cloudformation template to deploy LAMP Stack to AWS! This Template is 
 ## Stack
 This is LAMP Stack
 
-- Ubuntu 18.04.2
-- Apache 2
-- MySQL 5.7
-- PHP 7.2.19
+- Ubuntu 20.04.1
+- Apache 2.4.41
+- MySQL 8.0.20-0
+- PHP 7.4.3
 
 ## Optionally Tools
 - PhpMyAdmin
