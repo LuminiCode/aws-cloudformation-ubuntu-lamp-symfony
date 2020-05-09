@@ -13,18 +13,33 @@ set -x
 sudo apt-get update
 # sudo apt-get upgrade -y
 
+# install mysql-server
+sudo apt-get install -y mysql-server
+sudo apt-get install mysql-client
+sudo apt-get install -y libmysqlclient-dev
+
+# install apache2
+sudo apt-get install -y apache2
+sudo apt-get install apache2-doc
+sudo apt-get install apache2-utils
+
 # install php
 sudo apt-get install -y libapache2-mod-php7.4
 sudo apt-get install php7.4
 sudo apt-get install php7.4-curl
+sudo apt-get install php7.4-common
 sudo apt-get install -y php7.4-dev
 sudo apt-get install -y php7.4-gd
+sudo apt-get install php-pear
 sudo apt-get install -y php-imagick
 sudo apt-get install php7.4-mysql
 sudo apt-get install -y php7.4-ps
 sudo apt-get install php7.4-xsl
 sudo apt-get install -y libmcrypt-dev
 sudo apt-get install php7.4-mbstring -y
+
+# install python3
+sudo apt install python3
 
 # enable mod_rewrite
 sudo a2enmod rewrite
