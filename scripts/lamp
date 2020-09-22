@@ -40,6 +40,14 @@ sudo apt-get install php7.4-mbstring -y
 
 # install python3
 sudo apt install python3
+sudo apt install python3-pip
+sudo pip3 install numpy
+sudo pip3 install pandas
+sudo pip3 install mysqlclient
+sudo pip3 install mysql-connector-python
+sudo pip3 install pymysql
+sudo pip3 install lxml
+sudo pip3 install SQLAlchemy
 
 # enable mod_rewrite
 sudo a2enmod rewrite
