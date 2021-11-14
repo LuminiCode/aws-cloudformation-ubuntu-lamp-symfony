@@ -125,12 +125,20 @@ Parameters:
     Type: String
     MinLength: '0'
     MaxLength: '80'
+  InstanceTypeParameter:
+    Type: String
+    Default: t2.nano
+    AllowedValues:
+      - t2.nano
+      - t2.micro
+    Description: Enter t2.nano or t2.micro. Default is t2.nano.
+    
 Resources:
   WebServerInstance:
     Type: 'AWS::EC2::Instance'
     Properties:
       ImageId: ami-0b4b0a5bd04aec558
-      InstanceType: !Ref InstanceType
+      InstanceType: Ref: InstanceTypeParameter
       SecurityGroups:
         - !Ref WebServerSecurityGroup
       Tags:
