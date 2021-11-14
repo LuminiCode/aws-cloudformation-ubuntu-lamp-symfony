@@ -11,7 +11,16 @@ set -x
 
 # Upgrade
 sudo apt-get update
-# sudo apt-get upgrade -y
+sudo apt-get upgrade -y
+
+# Add swap space on Ubuntu 20 (1000MB)
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo cp /etc/fstab /etc/fstab.bak
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo sysctl vm.swappiness=10
 
 # install mysql-server
 sudo apt-get install -y mysql-server
@@ -117,15 +126,6 @@ then
 fi
 
 sudo systemctl reload apache2
-
-# Add swap space on Ubuntu 20 (1000MB)
-sudo fallocate -l 1G /swapfile
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-sudo cp /etc/fstab /etc/fstab.bak
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-sudo sysctl vm.swappiness=10
 
 # configure php.ini
 sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/7.4/apache2/php.ini
