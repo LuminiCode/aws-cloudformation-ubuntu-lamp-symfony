@@ -193,7 +193,6 @@ sudo /etc/init.d/apache2 restart
 if [ "$7" == "true" ]
 then
   # delete temporary files and folders
-  cd
   sudo rm -r /phpMyAdmin-5.1.1-all-languages
   sudo rm -r /phpMyAdmin-latest-all-languages.zip
 fi
