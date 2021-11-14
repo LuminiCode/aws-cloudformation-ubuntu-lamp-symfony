@@ -181,10 +181,17 @@ fi
 sudo chown ubuntu:ubuntu /var/www/html/ -R
 # sudo chmod a+rwx /var/www/html -R
 
+# install AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# restart apache
+sudo /etc/init.d/apache2 restart
 
 if [ "$7" == "true" ]
 then
   # delete temporary files and folders
-  sudo rm -r phpMyAdmin-5.0.2-all-languages
+  sudo rm -r phpMyAdmin-5.1.1-all-languages
   sudo rm -r phpMyAdmin-latest-all-languages.zip
 fi
