@@ -6,19 +6,20 @@ Tutorial in German: https://youtu.be/hcELHMOs32U
 ## Stack
 This is LAMP Stack
 
-- Ubuntu 20.04.1
+- Ubuntu 20.04 (64-bit Arm)
 - Apache 2.4.41
 - MySQL 8.0.20-0
 - PHP 7.4.3
+- AWS CLI
 
 ## Optionally Tools
-- PhpMyAdmin
+- PhpMyAdmin 5.1.1
 - Python3
 - Symfony
 - Jenkins
 
 ## AWS Ressourcen
-- EC2-Instance (t2.micro located in Frankfurt)
+- EC2-Instance (t2.nano or t2.micro located in Frankfurt)
 
 ## Another Ressources
 - GitHub
