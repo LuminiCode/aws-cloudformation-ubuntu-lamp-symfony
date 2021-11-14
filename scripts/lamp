@@ -49,7 +49,7 @@ sudo apt-get install php7.4-mbstring -y
 
 # install python3
 sudo apt install python3
-sudo apt install python3-pip
+sudo apt install -y python3-pip
 sudo pip3 install numpy
 sudo pip3 install pandas
 sudo pip3 install mysqlclient
