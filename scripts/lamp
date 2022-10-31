@@ -2,7 +2,7 @@
 # $1 (StackName) | $2 (DBUser) | $3 (DB Password) | $4 (DB Name) | $5 (DB Root Password)
 # $6 (Symfony installation) | $7 (phpMyAdmin installation) | $8 (Jenkins installation)
 # $9 (Existing Symfony project) | $10 (GitHubUser) | $11 (GitHubPassword)
-# $12 (GitHubPath)
+# $12 (GitHubPath) | $13 (Typo3 Installation)
 
 set -e
 set -x
@@ -33,19 +33,19 @@ sudo apt-get install apache2-doc
 sudo apt-get install apache2-utils
 
 # install php
-sudo apt-get install -y libapache2-mod-php7.4
-sudo apt-get install php7.4
-sudo apt-get install php7.4-curl
-sudo apt-get install php7.4-common
-sudo apt-get install -y php7.4-dev
-sudo apt-get install -y php7.4-gd
+sudo apt-get install -y libapache2-mod-php8.1
+sudo apt-get install php8.1
+sudo apt-get install php8.1-curl
+sudo apt-get install php8.1-common
+sudo apt-get install -y php8.1-dev
+sudo apt-get install -y php8.1-gd
 sudo apt-get install php-pear
 sudo apt-get install -y php-imagick
-sudo apt-get install php7.4-mysql
-sudo apt-get install -y php7.4-ps
-sudo apt-get install php7.4-xsl
+sudo apt-get install php8.1-mysql
+sudo apt-get install -y php8.1-ps
+sudo apt-get install php8.1-xsl
 sudo apt-get install -y libmcrypt-dev
-sudo apt-get install php7.4-mbstring -y
+sudo apt-get install php8.1-mbstring -y
 
 # install python3
 sudo apt install python3
@@ -171,10 +171,16 @@ if [ "$8" == "true" ]
 then
   wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
   sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-  sudo apt install openjdk-11-jdk -y
+  sudo apt install openjdk-18-jdk -y
   sudo apt update
   sudo apt install jenkins -y
   sudo systemctl start jenkins
+fi
+
+# install Typo3
+if [ "$13" == "true" ]
+then
+  sudo composer create-project "typo3/cms-base-distribution:^12" $1
 fi
 
 # set ubuntu as the owner of document root
