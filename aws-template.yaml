@@ -21,6 +21,7 @@ Metadata:
           - SymfonyInstallation
           - PhpMyAdminInstallation
           - JenkinsInstallation
+          - TYPO3Installation
       - Label:
           default: "Symfony settings"
         Parameters:
@@ -100,9 +101,17 @@ Parameters:
       - true
       - false
     ConstraintDescription: must be either true or false.
-  NewSymfonyInstallation:
+  Typo3Installation:
     Default: false
-    Description : 'Do you want to take an existing project from github otherwise a new symfony project will be creat.'
+    Description : 'Do you want to install TYPO3?'
+    Type: String
+    AllowedValues:
+      - true
+      - false
+    ConstraintDescription: must be either true or false.
+  ExistingSymfonyInstallation:
+    Default: false
+    Description : 'Do you want to take an existing project from github otherwise a new symfony project will be created.'
     Type: String
     AllowedValues:
       - true
@@ -190,13 +199,13 @@ Resources:
   WebServerInstance:
     Type: 'AWS::EC2::Instance'
     Properties:
-      ImageId: ami-0a49b025fffbbdac6
+      ImageId: ami-0caef02b518350c8b
       InstanceType: !Ref InstanceType
       SecurityGroups:
         - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
-          Value: Ubuntu20 Web + SSH Server
+          Value: Ubuntu22.04 Web + SSH Server
       KeyName: !Ref KeyName
       UserData:
         'Fn::Base64':
@@ -205,7 +214,7 @@ Resources:
           sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp -o /lamp
           # GitHub data have to be at the end and use Token
           sudo chmod +x /lamp
-          /./lamp ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${NewSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath}
+          /./lamp ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${ExistingSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath} ${Typo3Installation}
           rm -r /lamp
 
   WebServerSecurityGroup:
