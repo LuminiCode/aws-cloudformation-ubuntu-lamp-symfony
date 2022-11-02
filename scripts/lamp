@@ -13,7 +13,7 @@ set -x
 sudo apt-get update
 sudo apt-get upgrade -y
 
-# Add swap space on Ubuntu 22 (1000MB)
+# Add swap space on Ubuntu 20 (1000MB)
 sudo fallocate -l 1G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
@@ -46,14 +46,6 @@ sudo apt-get install -y php8.1-ps
 sudo apt-get install php8.1-xsl
 sudo apt-get install -y libmcrypt-dev
 sudo apt-get install php8.1-mbstring -y
-sudo apt-get install php8.1-intl
-sudo apt-get install php8.1-cli
-sudo apt-get install php8.1-bcmath
-sudo apt-get install php8.1-zip
-sudo apt-get install php8.1-apcu
-sudo apt-get install php8.1-fileinfo
-sudo apt-get install php8.1-xml
-sudo apt-get install php8.1-soap
 
 # install python3
 sudo apt install python3
@@ -81,6 +73,12 @@ sudo mv composer.phar /usr/local/bin/composer
 
 # install git
 sudo apt-get install git
+
+# set apache2 directory for symfony
+sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
+a1='/var/www/html'
+b1='/var/www/html/'"$1"''/public
+sudo sed -i 's,'"$a1"','"$b1"',' /etc/apache2/sites-available/000-default.conf
 
 # set mysql
 sudo mysql -e "CREATE DATABASE $4 /*\!40100 DEFAULT CHARACTER SET utf8 */;"
@@ -130,18 +128,7 @@ fi
 sudo systemctl reload apache2
 
 # configure php.ini
-sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/8.1/apache2/php.ini
-sudo sed -i 's/max_execution_time = .*/max_execution_time = '240'/' /etc/php/8.1/apache2/php.ini
-sudo sed -i 's/;max_input_vars = .*/max_input_vars = '1500'/' /etc/php/8.1/apache2/php.ini
-sudo sed -i 's/post_max_size = .*/post_max_size = '10M'/' /etc/php/8.1/apache2/php.ini
-sudo sed -i 's/upload_max_filesize = .*/upload_max_filesize = '10M'/' /etc/php/8.1/apache2/php.ini
-
-sudo sed -i 's,;extension=pdo_mysql,extension=pdo_mysql,g' /etc/php/8.1/apache2/php.ini
-sudo sed -i 's,;extension=mbstring,extension=mbstring,g' /etc/php/8.1/apache2/php.ini
-
-# install other tools for typo3
-sudo apt-get install imagemagick
-
+sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/7.4/apache2/php.ini
 
 # restart apache
 sudo /etc/init.d/apache2 restart
@@ -149,12 +136,6 @@ sudo /etc/init.d/apache2 restart
 # install symfony
 if [ "$6" == "true" ]
 then
-  # set apache2 directory for symfony
-  sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
-  a1='/var/www/html'
-  b1='/var/www/html/'"$1"''/public
-  sudo sed -i 's,'"$a1"','"$b1"',' /etc/apache2/sites-available/000-default.conf
-
   if [ "$9" == "false" ]
   then
     # install new symfonfy project
@@ -200,33 +181,6 @@ fi
 sudo chown ubuntu:ubuntu /var/www/html/ -R
 sudo chmod 777 -R /var/www/html/ 
 
-# install Typo3
-if [ "$13" == "true" ]
-then
-  # set apache2 directory for symfony
-  sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
-  
-  a1='\/var\/www\/html'
-  b1='\/var\/www\/html\/'"$1"''\/public'
-  sudo sed -i 's,'"$a1"','"$b1"',g' /etc/apache2/sites-available/000-default.conf
-  
-  a2=';extension=intl'
-  b2='extension=intl'
-  sudo sed -i 's,'"$a2"','"$b2"',g' /etc/php/8.1/apache2/php.ini
-  sudo sed -i 's,'"$a2"','"$b2"',g' /etc/php/8.1/cli/php.ini
-  
-  #install typo3
-  cd /var/www/html
-  export COMPOSER_HOME="$HOME/.config/composer";
-  
-  composer create-project "typo3/cms-base-distribution:^12" $1
-  composer clear
-fi
-
-# set ubuntu as the owner of document root
-sudo chown ubuntu:ubuntu /var/www/html/ -R
-sudo chmod 777 -R /var/www/html/ 
-
 # install AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -239,6 +193,6 @@ sudo /etc/init.d/apache2 restart
 if [ "$7" == "true" ]
 then
   # delete temporary files and folders
-  sudo rm -r /phpMyAdmin-5.2.0-all-languages
+  sudo rm -r /phpMyAdmin-5.1.1-all-languages
   sudo rm -r /phpMyAdmin-latest-all-languages.zip
 fi
