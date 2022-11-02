@@ -29,6 +29,12 @@ Metadata:
           - GithubUser
           - GithubToken
           - GithubPath
+      - Label:
+          default: "EC2 Settings"
+        Parameters:
+          - InstanceType
+          - KeyName
+          - SSHLocation
     ParameterLabels:
       VPCID:
         default: "Cool new project is coming soon!"
