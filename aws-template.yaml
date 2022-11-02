@@ -21,7 +21,7 @@ Metadata:
           - SymfonyInstallation
           - PhpMyAdminInstallation
           - JenkinsInstallation
-          - TYPO3Installation
+          - Typo3Installation
       - Label:
           default: "Symfony settings"
         Parameters:
