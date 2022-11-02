@@ -25,7 +25,7 @@ Metadata:
       - Label:
           default: "Symfony settings"
         Parameters:
-          - NewSymfonyInstallation
+          - ExistingSymfonyInstallation
           - GithubUser
           - GithubToken
           - GithubPath
