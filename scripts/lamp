@@ -180,7 +180,10 @@ fi
 # install Typo3
 if [ "$13" == "true" ]
 then
-  sudo composer create-project "typo3/cms-base-distribution:^12" $1
+  cd /var/www/html
+  export COMPOSER_HOME="$HOME/.config/composer";
+  composer create-project "typo3/cms-base-distribution:^12" $1
+  composer clear
 fi
 
 # set ubuntu as the owner of document root
