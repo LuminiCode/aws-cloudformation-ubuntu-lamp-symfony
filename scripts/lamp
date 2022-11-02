@@ -13,7 +13,7 @@ set -x
 sudo apt-get update
 sudo apt-get upgrade -y
 
-# Add swap space on Ubuntu 20 (1000MB)
+# Add swap space on Ubuntu 22 (1000MB)
 sudo fallocate -l 1G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
@@ -199,6 +199,6 @@ sudo /etc/init.d/apache2 restart
 if [ "$7" == "true" ]
 then
   # delete temporary files and folders
-  sudo rm -r /phpMyAdmin-5.1.1-all-languages
+  sudo rm -r /phpMyAdmin-5.2.0-all-languages
   sudo rm -r /phpMyAdmin-latest-all-languages.zip
 fi
