@@ -50,7 +50,6 @@ sudo apt-get install php8.1-intl
 sudo apt-get install php8.1-cli
 sudo apt-get install php8.1-bcmath
 sudo apt-get install php8.1-zip
-sudo apt-get install php8.1-apcu
 sudo apt-get install php8.1-fileinfo
 sudo apt-get install php8.1-xml
 sudo apt-get install php8.1-soap
@@ -147,7 +146,7 @@ sudo sed -i 's,;extension=pdo_mysql,extension=pdo_mysql,g' /etc/php/8.1/apache2/
 sudo sed -i 's,;extension=mbstring,extension=mbstring,g' /etc/php/8.1/apache2/php.ini
 
 # install other tools for typo3
-sudo apt-get install imagemagick
+sudo apt-get install imagemagick -y
 
 # restart apache
 sudo /etc/init.d/apache2 restart
@@ -171,11 +170,11 @@ sudo chmod 777 -R /var/www/html/
 if [ "$13" == "true" ]
 then
   # set apache2 directory for symfony
-  sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
+  #sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
   
-  a1='\/var\/www\/html'
-  b1='\/var\/www\/html\/'"$1"''\/public'
-  sudo sed -i 's,'"$a1"','"$b1"',g' /etc/apache2/sites-available/000-default.conf
+  #a1='\/var\/www\/html'
+  #b1='\/var\/www\/html\/'"$1"''\/public'
+  #sudo sed -i 's,'"$a1"','"$b1"',g' /etc/apache2/sites-available/000-default.conf
   
   a2=';extension=intl'
   b2='extension=intl'
