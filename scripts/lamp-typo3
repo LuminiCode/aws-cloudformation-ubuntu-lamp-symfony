@@ -88,7 +88,7 @@ sudo apt-get install git
 # set apache2 directory for symfony
 sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/typo3.conf -o /etc/apache2/sites-available/typo3.conf
 a1='/var/www/html/typo3/public'
-b1='/var/www/html/'"$1"''/public'
+b1='/var/www/html/'"$1"'/public'
 sudo sed -i 's,'"$a1"','"$b1"',' /etc/apache2/sites-available/typo3.conf
 sudo ln -s /etc/apache2/sites-available/typo3.conf /etc/apache2/sites-enabled/typo3.conf
 
