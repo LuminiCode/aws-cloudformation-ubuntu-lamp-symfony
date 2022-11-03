@@ -6,21 +6,22 @@ Tutorial in German: https://youtu.be/hcELHMOs32U
 ## Stack
 This is LAMP Stack
 
-- Ubuntu 20.04.3 LTS (64-bit x86)
-- Apache 2.4.41
-- MySQL 8.0.27
-- PHP 7.4.3
+- Ubuntu Ubuntu 22.04.1 LTS (64-bit x86)
+- Apache 2.4.52
+- MySQL 8.0.31
+- PHP 8.1.2
 - AWS CLI (current version)
-- Java (openjdk version "11.0.11")
+- Java (openjdk version "18") - if "Jenkins" is installed
 
 ## Optionally Tools
-- PhpMyAdmin 5.1.1
+- PhpMyAdmin 5.2.0 - optional
 - Python3
-- Symfony (current version)
-- Jenkins (current version)
+- Symfony (current version) - optional
+- Jenkins (current version) - optional
+- TYPO3 (12.0.0) - optional
 
 ## AWS Ressourcen
-- EC2-Instance ImageId: ami-0a49b025fffbbdac6 (located in Frankfurt)
+- EC2-Instance ImageId: ami-0caef02b518350c8b (located in Frankfurt)
 
 ## Another Ressources
 - GitHub
