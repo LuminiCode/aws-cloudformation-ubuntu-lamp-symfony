@@ -193,12 +193,14 @@ then
   composer clear
   
   sudo touch /var/www/html/'"$1"'/public/FIRST_INSTALL
+  
+
+  # set ubuntu as the owner of document root
+  sudo chown ubuntu:ubuntu /var/www/html/ -R
+  sudo chmod 777 -R /var/www/html/
+  sudo chown -R www-data:www-data /var/www/html/'"$1"'
 fi
 
-# set ubuntu as the owner of document root
-sudo chown ubuntu:ubuntu /var/www/html/ -R
-sudo chmod 777 -R /var/www/html/
-sudo chown -R www-data:www-data /var/www/html/lonito-typo3
 
 # install AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
