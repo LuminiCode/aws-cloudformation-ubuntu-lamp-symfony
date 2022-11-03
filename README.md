@@ -20,7 +20,7 @@ This is LAMP Stack
 - Jenkins (current version) - optional
 - TYPO3 (12.0.0) - optional
 
-**don't install TYPO3 and Symfony at the same time**
+!! **Don't install TYPO3 and Symfony at the same time** !!
 
 ## AWS Ressourcen
 - EC2-Instance ImageId: ami-0caef02b518350c8b (located in Frankfurt)
