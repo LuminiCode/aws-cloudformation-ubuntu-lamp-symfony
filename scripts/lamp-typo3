@@ -225,7 +225,8 @@ fi
 
 # set ubuntu as the owner of document root
 sudo chown ubuntu:ubuntu /var/www/html/ -R
-sudo chmod 777 -R /var/www/html/ 
+sudo chmod 777 -R /var/www/html/
+sudo chown -R www-data:www-data lonito-typo3
 
 # install AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
