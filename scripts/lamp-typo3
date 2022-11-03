@@ -171,7 +171,7 @@ sudo chown ubuntu:ubuntu /var/www/html/ -R
 sudo chmod 777 -R /var/www/html/ 
 
 # install Typo3
-if [ "${11}" == "true" ]
+if [ "${13}" == "true" ]
 then
   # set apache2 directory for symfony
   #sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
