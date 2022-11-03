@@ -220,17 +220,17 @@ Resources:
           
           if [ ${Typo3Installation} == "true" ]
           then
+           sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp-typo3 -o /lamp-typo3
+            # GitHub data have to be at the end and use Token
+            sudo chmod +x /lamp-typo3
+            /./lamp-typo3 ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${ExistingSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath} ${Typo3Installation}
+            rm -r /lamp-typo3
+          else
             sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp -o /lamp
             # GitHub data have to be at the end and use Token
             sudo chmod +x /lamp
             /./lamp ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${ExistingSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath} ${Typo3Installation}
             rm -r /lamp
-          else
-          sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp-typo3 -o /lamp-typo3
-            # GitHub data have to be at the end and use Token
-            sudo chmod +x /lamp-typo3
-            /./lamp-typo3 ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${ExistingSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath} ${Typo3Installation}
-            rm -r /lamp-typo3
           fi
 
   WebServerSecurityGroup:
