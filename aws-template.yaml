@@ -226,7 +226,7 @@ Resources:
             /./lamp ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${ExistingSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath} ${Typo3Installation}
             rm -r /lamp
           else
-          sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp -o /lamp-typo3
+          sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/scripts/lamp-typo3 -o /lamp-typo3
             # GitHub data have to be at the end and use Token
             sudo chmod +x /lamp-typo3
             /./lamp-typo3 ${AWS::StackName} ${DBUser} ${DBPassword} ${DBName} ${DBRootPassword} ${SymfonyInstallation} ${PhpMyAdminInstallation} ${JenkinsInstallation} ${ExistingSymfonyInstallation} ${GithubUser} ${GithubToken} ${GithubPath} ${Typo3Installation}
