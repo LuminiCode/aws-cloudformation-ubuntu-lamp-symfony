@@ -189,9 +189,9 @@ export COMPOSER_HOME="$HOME/.config/composer";
 composer create-project "typo3/cms-base-distribution:^12" $1
 composer clear
 
-a3 = '/var/www/html/'"$1"'/public/FIRST_INSTALL'
+a3='/var/www/html/'"$1"'/public/FIRST_INSTALL'
 
-sudo touch '"$a3"'
+sudo touch $a3
 
 # set ubuntu as the owner of document root
 sudo chown ubuntu:ubuntu /var/www/html/ -R
