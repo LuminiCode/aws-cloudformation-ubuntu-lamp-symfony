@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+ServerAdmin admin@typo3.com
+DocumentRoot /var/www/html/typo3/public
+
+    <Directory /var/www/html/typo3/public>
+         Options FollowSymlinks
+         AllowOverride All
+         Require all granted
+    </Directory>
+
+     ErrorLog ${APACHE_LOG_DIR}/typo3_error.log
+     CustomLog ${APACHE_LOG_DIR}/typo3_access.log combined
+</VirtualHost>
