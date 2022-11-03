@@ -49,10 +49,14 @@ sudo apt-get install php8.1-mbstring -y
 sudo apt-get install php8.1-intl
 sudo apt-get install php8.1-cli
 sudo apt-get install php8.1-bcmath
+
+sudo needrestart -u NeedRestart::UI::stdio -r a
+
 sudo apt-get install php8.1-zip
 sudo apt-get install php8.1-fileinfo
 sudo apt-get install php8.1-xml
 sudo apt-get install php8.1-soap
+sudo needrestart -u NeedRestart::UI::stdio -r a
 
 # install python3
 sudo apt install python3
