@@ -13,7 +13,7 @@ This is LAMP Stack
 - AWS CLI (current version)
 - Java (openjdk version "18") - if "Jenkins" is installed
 
-## Optionally Tools
+## Additionally Tools
 - PhpMyAdmin 5.2.0 - optional
 - Python3
 - Symfony (current version) - optional
