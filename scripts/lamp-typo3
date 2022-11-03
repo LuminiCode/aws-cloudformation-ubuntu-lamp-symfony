@@ -82,6 +82,13 @@ sudo mv composer.phar /usr/local/bin/composer
 # install git
 sudo apt-get install git
 
+# set apache2 directory for symfony
+sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/typo3.conf -o /etc/apache2/sites-available/typo3.conf
+a1='/var/www/html/typo3/public'
+b1='/var/www/html/'"$1"''/public
+sudo sed -i 's,'"$a1"','"$b1"',' /etc/apache2/sites-available/typo3.conf
+sudo ln -s /etc/apache2/sites-available/typo3.conf /etc/apache2/sites-enabled/typo3.conf
+
 # set mysql
 sudo mysql -e "CREATE DATABASE $4 /*\!40100 DEFAULT CHARACTER SET utf8 */;"
 sudo mysql -e "CREATE USER $2@localhost IDENTIFIED BY '$3';"
@@ -142,48 +149,8 @@ sudo sed -i 's,;extension=mbstring,extension=mbstring,g' /etc/php/8.1/apache2/ph
 # install other tools for typo3
 sudo apt-get install imagemagick
 
-
 # restart apache
 sudo /etc/init.d/apache2 restart
-
-# install symfony
-if [ "$6" == "true" ]
-then
-  # set apache2 directory for symfony
-  sudo curl https://raw.githubusercontent.com/LuminiCode/aws-cloudformation-ubuntu-lamp-symfony/master/settings/000-default.conf -o /etc/apache2/sites-available/000-default.conf
-  a1='/var/www/html'
-  b1='/var/www/html/'"$1"''/public
-  sudo sed -i 's,'"$a1"','"$b1"',' /etc/apache2/sites-available/000-default.conf
-
-  if [ "$9" == "false" ]
-  then
-    # install new symfonfy project
-    cd /var/www/html
-    export COMPOSER_HOME="$HOME/.config/composer";
-    composer create-project symfony/website-skeleton $1
-    composer clear
-
-    # change database-settings in the symfony .env file
-    x='DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name'
-    y='DATABASE_URL=mysql://'"$2"':'"$3"'@localhost/'"$4"''
-    sed -i 's,'"$x"','"$y"',' /var/www/html/$1/.env
-  else
-    # install an existing project from github
-    # !! edit !! the following script (the following script is on github)
-    mkdir /var/www/html/settings
-    
-    # get GitHubPath
-    s1=${12}
-    s2=''
-    s3='https://github.com/'
-    s4=${s1/.git/$s2}
-    s4=${s4/$s3/$s2}    
-    sudo curl -u "${10}":"${11}" https://raw.githubusercontent.com/"${s4}"/master/aws-install-script-sg.sh -o /var/www/html/settings/aws-install-script-sg.sh
-    
-    bash /var/www/html/settings/aws-install-script-sg.sh $1 $2 $3 $4 "${10}" "${11}"
-    sudo rm -r /var/www/html/settings
-  fi
-fi
 
 # install jenkins
 if [ "$8" == "true" ]
@@ -221,12 +188,14 @@ then
   
   composer create-project "typo3/cms-base-distribution:^12" $1
   composer clear
+  
+  sudo touch /var/www/html/'"$1"'/public/FIRST_INSTALL
 fi
 
 # set ubuntu as the owner of document root
 sudo chown ubuntu:ubuntu /var/www/html/ -R
 sudo chmod 777 -R /var/www/html/
-sudo chown -R www-data:www-data lonito-typo3
+sudo chown -R www-data:www-data /var/www/html/lonito-typo3
 
 # install AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
