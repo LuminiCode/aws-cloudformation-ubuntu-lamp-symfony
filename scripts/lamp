@@ -135,7 +135,7 @@ fi
 sudo systemctl reload apache2
 
 # configure php.ini
-sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/8.1/apache2/php.ini
+sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/8.3/apache2/php.ini
 
 # restart apache
 sudo /etc/init.d/apache2 restart
