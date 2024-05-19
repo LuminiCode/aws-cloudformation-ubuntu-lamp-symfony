@@ -211,7 +211,7 @@ Resources:
         - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
-          Value: Ubuntu22.04 Web + SSH Server
+          Value: Ubuntu24.04 Web + SSH Server
       KeyName: !Ref KeyName
       UserData:
         'Fn::Base64':
