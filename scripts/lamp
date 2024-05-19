@@ -50,13 +50,20 @@ sudo apt-get install php8.3-mbstring -y
 # install python3
 sudo apt install python3
 sudo apt install -y python3-pip
-sudo pip3 install numpy
-sudo pip3 install pandas
-sudo pip3 install mysqlclient
-sudo pip3 install mysql-connector-python
-sudo pip3 install pymysql
-sudo pip3 install lxml
-sudo pip3 install SQLAlchemy
+
+sudo apt install -y python3-venv 
+python3 -m venv myenv
+source myenv/bin/activate
+
+pip3 install numpy
+pip3 install pandas
+pip3 install mysqlclient
+pip3 install mysql-connector-python
+pip3 install pymysql
+pip3 install lxml
+pip3 install SQLAlchemy
+
+source deactivate
 
 # enable mod_rewrite
 sudo a2enmod rewrite
