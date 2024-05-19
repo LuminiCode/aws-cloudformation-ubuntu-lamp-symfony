@@ -6,15 +6,16 @@ Tutorial in German: https://youtu.be/hcELHMOs32U
 ## Stack
 This is LAMP Stack
 
-- Ubuntu Ubuntu 22.04.1 LTS (64-bit x86)
+- Ubuntu 24.04 LTS (64-bit x86)
 - Apache 2.4.52
 - MySQL 8.0.31
-- PHP 8.1.2
+- PHP 8.3
+- Openjdk 22
 - AWS CLI (current version)
 - Java (openjdk version "18") - if "Jenkins" is installed
 
 ## Additionally Tools
-- PhpMyAdmin 5.2.0 - optional
+- PhpMyAdmin 5.2.1 - optional
 - Python3
 - Symfony (current version) - optional
 - Jenkins (current version) - optional
@@ -23,7 +24,7 @@ This is LAMP Stack
 !! **Don't install TYPO3 and Symfony at the same time** !!
 
 ## AWS Ressourcen
-- EC2-Instance ImageId: ami-0caef02b518350c8b (located in Frankfurt)
+- EC2-Instance ImageId: ami-01e444924a2233b07 (located in Frankfurt)
 
 ## Another Ressources
 - GitHub
