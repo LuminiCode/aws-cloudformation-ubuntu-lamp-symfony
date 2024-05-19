@@ -33,19 +33,19 @@ sudo apt-get install apache2-doc
 sudo apt-get install apache2-utils
 
 # install php
-sudo apt-get install -y libapache2-mod-php8.1
-sudo apt-get install php8.1
-sudo apt-get install php8.1-curl
-sudo apt-get install php8.1-common
-sudo apt-get install -y php8.1-dev
-sudo apt-get install -y php8.1-gd
+sudo apt-get install -y libapache2-mod-php8.3
+sudo apt-get install php8.3
+sudo apt-get install php8.3-curl
+sudo apt-get install php8.3-common
+sudo apt-get install -y php8.3-dev
+sudo apt-get install -y php8.3-gd
 sudo apt-get install php-pear
 sudo apt-get install -y php-imagick
-sudo apt-get install php8.1-mysql
-sudo apt-get install -y php8.1-ps
-sudo apt-get install php8.1-xsl
+sudo apt-get install php8.3-mysql
+sudo apt-get install -y php8.3-ps
+sudo apt-get install php8.3-xsl
 sudo apt-get install -y libmcrypt-dev
-sudo apt-get install php8.1-mbstring -y
+sudo apt-get install php8.3-mbstring -y
 
 # install python3
 sudo apt install python3
@@ -171,7 +171,7 @@ if [ "$8" == "true" ]
 then
   wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
   sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-  sudo apt install openjdk-18-jdk -y
+  sudo apt install openjdk-22-jdk -y
   sudo apt update
   sudo apt install jenkins -y
   sudo systemctl start jenkins
@@ -193,6 +193,6 @@ sudo /etc/init.d/apache2 restart
 if [ "$7" == "true" ]
 then
   # delete temporary files and folders
-  sudo rm -r /phpMyAdmin-5.1.1-all-languages
+  sudo rm -r /phpMyAdmin-5.2.1-all-languages
   sudo rm -r /phpMyAdmin-latest-all-languages.zip
 fi
