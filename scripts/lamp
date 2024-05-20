@@ -152,7 +152,7 @@ then
     # install new symfonfy project
     cd /var/www/html
     export COMPOSER_HOME="$HOME/.config/composer";
-    composer create-project symfony/website-skeleton $1
+    composer create-project symfony/website-skeleton -n $1
     composer clear
 
     # change database-settings in the symfony .env file
