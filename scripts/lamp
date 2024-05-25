@@ -151,10 +151,9 @@ then
   then
     # install new symfonfy project
     cd /var/www/html
-    export COMPOSER_HOME="$HOME/.config/composer";
-    composer create-project symfony/website-skeleton -n $1
-    composer clear
-
+    curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
+    sudo apt install symfony-cli
+    symfony new --webapp $1
     # change database-settings in the symfony .env file
     x='DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name'
     y='DATABASE_URL=mysql://'"$2"':'"$3"'@localhost/'"$4"''
