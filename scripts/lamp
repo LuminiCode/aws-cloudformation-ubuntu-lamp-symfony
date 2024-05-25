@@ -141,7 +141,6 @@ sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/8.3/apache2/ph
 sudo /etc/init.d/apache2 restart
 
 # set ubuntu as the owner of document root
-sudo chown ubuntu:ubuntu /var/www/html/ -R
 sudo chmod 777 -R /var/www/html/ 
 
 # install symfony
@@ -195,6 +194,10 @@ sudo rm -r awscliv2.zip
 
 # restart apache
 sudo /etc/init.d/apache2 restart
+
+# set ubuntu as the owner of document root
+sudo chown ubuntu:ubuntu /var/www/html/ -R
+sudo chmod 777 -R /var/www/html/ 
 
 if [ "$7" == "true" ]
 then
