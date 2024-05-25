@@ -4,6 +4,8 @@
 # $9 (Existing Symfony project) | $10 (GitHubUser) | $11 (GitHubPassword)
 # $12 (GitHubPath) | $13 (Typo3 Installation)
 
+whoami
+
 set -e
 set -x
 # Set timezone
@@ -46,6 +48,8 @@ sudo apt-get install -y php8.3-ps
 sudo apt-get install php8.3-xsl
 sudo apt-get install -y libmcrypt-dev
 sudo apt-get install php8.3-mbstring -y
+
+whoami
 
 # install python3
 sudo apt install python3
