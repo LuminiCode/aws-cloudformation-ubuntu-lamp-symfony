@@ -147,6 +147,7 @@ then
   then
     # install new symfonfy project
     cd /var/www/html
+    export COMPOSER_HOME="$HOME/.config/composer";
     composer create-project symfony/skeleton:"7.0.*" $1
     cd $1
     composer require -n webapp
