@@ -140,13 +140,15 @@ sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/8.3/apache2/ph
 # restart apache
 sudo /etc/init.d/apache2 restart
 
- whoami
+# change user
+su - ubuntu
 
 # install symfony
 if [ "$6" == "true" ]
 then
   if [ "$9" == "false" ]
   then
+    whoami
     # install new symfonfy project
     cd /var/www/html
     export COMPOSER_HOME="$HOME/.config/composer";
