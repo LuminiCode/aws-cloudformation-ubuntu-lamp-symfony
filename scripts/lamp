@@ -140,9 +140,6 @@ sudo sed -i 's/memory_limit = .*/memory_limit = '850M'/' /etc/php/8.3/apache2/ph
 # restart apache
 sudo /etc/init.d/apache2 restart
 
-# set ubuntu as the owner of document root
-sudo chmod 777 -R /var/www/html/ 
-
 # install symfony
 if [ "$6" == "true" ]
 then
