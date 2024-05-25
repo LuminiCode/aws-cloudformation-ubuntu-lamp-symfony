@@ -161,8 +161,8 @@ then
     cd $1
     sudo -u ubuntu composer require -n webapp
     # change database-settings in the symfony .env file
-    x='DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name'
-    y='DATABASE_URL=mysql://'"$2"':'"$3"'@localhost/'"$4"''
+    x='postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=16&charset=utf8'
+    y='mysql://'"$2"':'"$3"'@127.0.0.1:3306/'"$4"'?serverVersion=8.0.32\&charset=utf8mb4'
     sed -i 's,'"$x"','"$y"',' /var/www/html/$1/.env
   else
     # install an existing project from github
