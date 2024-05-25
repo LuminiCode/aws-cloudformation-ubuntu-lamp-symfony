@@ -17,7 +17,7 @@ This is LAMP Stack
 ## Additionally Tools
 - PhpMyAdmin 5.2.1 - optional
 - Python3
-- Symfony (current version) - optional
+- Symfony (7.0.*) - optional
 - Jenkins (current version) - optional
 - TYPO3 (12.0.0) - optional
 
